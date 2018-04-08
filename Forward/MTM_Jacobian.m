@@ -1,0 +1,27 @@
+function Jacob = MTM_Jacobian(m, q)
+    q_size = size(q);
+    if q_size(2)~=1
+        msg = sprintf('Please Set q to Vector');
+        error(msg);
+    elseif q_size(1)~=7
+        msg = sprintf('Please length of q is %d, Please set to 7',q_size(1));
+        error(msg);
+    end
+    q1 = q(1);
+    q2 = q(2);
+    q3 = q(3);
+    q4 = q(4);
+    q5 = q(5);
+    q6 = q(6);
+    q7 = q(7);
+    l_arm = m.l_arm; 
+    l_forearm = m.l_forearm; 
+    h = m.h; 
+    Jacob = [ cos(q1)*(l_forearm*cos(q2 + q3) - h*sin(q2 + q3) + l_arm*sin(q2)), -sin(q1)*(h*cos(q2 + q3) + l_forearm*sin(q2 + q3) - l_arm*cos(q2)), -sin(q1)*(h*cos(q2 + q3) + l_forearm*sin(q2 + q3)),                     0,                                                                                   0,                                                                                                                                                                               0,                                                                                                                                                                                                                                                                                                                                     0
+ sin(q1)*(l_forearm*cos(q2 + q3) - h*sin(q2 + q3) + l_arm*sin(q2)),  cos(q1)*(h*cos(q2 + q3) + l_forearm*sin(q2 + q3) - l_arm*cos(q2)),  cos(q1)*(h*cos(q2 + q3) + l_forearm*sin(q2 + q3)),                     0,                                                                                   0,                                                                                                                                                                               0,                                                                                                                                                                                                                                                                                                                                     0
+                                                                 0,            l_forearm*cos(q2 + q3) - h*sin(q2 + q3) + l_arm*sin(q2),            l_forearm*cos(q2 + q3) - h*sin(q2 + q3),                     0,                                                                                   0,                                                                                                                                                                               0,                                                                                                                                                                                                                                                                                                                                     0
+                                                                 0,                                                           -cos(q1),                                           -cos(q1), -sin(q2 + q3)*sin(q1), cos(q2)*cos(q3)*sin(q1)*sin(q4) - cos(q1)*cos(q4) - sin(q1)*sin(q2)*sin(q3)*sin(q4), cos(q4)*sin(q1)*sin(q2)*sin(q3)*sin(q5) - cos(q2)*cos(q5)*sin(q1)*sin(q3) - cos(q3)*cos(q5)*sin(q1)*sin(q2) - cos(q2)*cos(q3)*cos(q4)*sin(q1)*sin(q5) - cos(q1)*sin(q4)*sin(q5), cos(q2)*cos(q3)*sin(q1)*sin(q4)*sin(q6) - cos(q1)*cos(q5)*cos(q6)*sin(q4) - cos(q1)*cos(q4)*sin(q6) + cos(q2)*cos(q6)*sin(q1)*sin(q3)*sin(q5) + cos(q3)*cos(q6)*sin(q1)*sin(q2)*sin(q5) - sin(q1)*sin(q2)*sin(q3)*sin(q4)*sin(q6) - cos(q2)*cos(q3)*cos(q4)*cos(q5)*cos(q6)*sin(q1) + cos(q4)*cos(q5)*cos(q6)*sin(q1)*sin(q2)*sin(q3)
+                                                                 0,                                                           -sin(q1),                                           -sin(q1),  sin(q2 + q3)*cos(q1), cos(q1)*sin(q2)*sin(q3)*sin(q4) - cos(q1)*cos(q2)*cos(q3)*sin(q4) - cos(q4)*sin(q1), cos(q1)*cos(q2)*cos(q5)*sin(q3) - sin(q1)*sin(q4)*sin(q5) + cos(q1)*cos(q3)*cos(q5)*sin(q2) + cos(q1)*cos(q2)*cos(q3)*cos(q4)*sin(q5) - cos(q1)*cos(q4)*sin(q2)*sin(q3)*sin(q5), cos(q1)*sin(q2)*sin(q3)*sin(q4)*sin(q6) - cos(q5)*cos(q6)*sin(q1)*sin(q4) - cos(q1)*cos(q2)*cos(q3)*sin(q4)*sin(q6) - cos(q1)*cos(q2)*cos(q6)*sin(q3)*sin(q5) - cos(q1)*cos(q3)*cos(q6)*sin(q2)*sin(q5) - cos(q4)*sin(q1)*sin(q6) + cos(q1)*cos(q2)*cos(q3)*cos(q4)*cos(q5)*cos(q6) - cos(q1)*cos(q4)*cos(q5)*cos(q6)*sin(q2)*sin(q3)
+                                                                 1,                                                                  0,                                                  0,          cos(q2 + q3),                                                                sin(q2 + q3)*sin(q4),                                                           cos(q2)*cos(q3)*cos(q5) - cos(q5)*sin(q2)*sin(q3) - cos(q2)*cos(q4)*sin(q3)*sin(q5) - cos(q3)*cos(q4)*sin(q2)*sin(q5),                                                                                                             cos(q2)*sin(q3)*sin(q4)*sin(q6) - cos(q2)*cos(q3)*cos(q6)*sin(q5) + cos(q3)*sin(q2)*sin(q4)*sin(q6) + cos(q6)*sin(q2)*sin(q3)*sin(q5) - cos(q2)*cos(q4)*cos(q5)*cos(q6)*sin(q3) - cos(q3)*cos(q4)*cos(q5)*cos(q6)*sin(q2)];
+ 
+end

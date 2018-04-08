@@ -1,0 +1,23 @@
+function T_Matrix = PSM_FK(m, q)
+    q_size = size(q);
+    if q_size(2)~=1
+        msg = sprintf('Please Set q to Vector');
+        error(msg);
+    elseif q_size(1)~=6
+        msg = sprintf('Please length of q is %d, Please set to 6',q_size(1));
+        error(msg);
+    end
+    q1 = q(1);
+    q2 = q(2);
+    q3 = q(3);
+    q4 = q(4);
+    q5 = q(5);
+    q6 = q(6);
+    l_RCC = m.l_RCC; 
+    l_tool =m.l_tool;
+    l_pitch2yaw = m.l_pitch2yaw;
+    T_Matrix = [ - cos(q6 - pi/2)*(cos(q5 - pi/2)*(cos(q1 + pi/2)*sin(q4)*sin(q2 - pi/2) - cos(q4)*cos(q1 + pi/2)*cos(q2 - pi/2)) + sin(q5 - pi/2)*(cos(q4)*cos(q1 + pi/2)*sin(q2 - pi/2) + cos(q1 + pi/2)*cos(q2 - pi/2)*sin(q4))) - sin(q1 + pi/2)*sin(q6 - pi/2), cos(q5 - pi/2)*(cos(q4)*cos(q1 + pi/2)*sin(q2 - pi/2) + cos(q1 + pi/2)*cos(q2 - pi/2)*sin(q4)) - sin(q5 - pi/2)*(cos(q1 + pi/2)*sin(q4)*sin(q2 - pi/2) - cos(q4)*cos(q1 + pi/2)*cos(q2 - pi/2)), sin(q6 - pi/2)*(cos(q5 - pi/2)*(cos(q1 + pi/2)*sin(q4)*sin(q2 - pi/2) - cos(q4)*cos(q1 + pi/2)*cos(q2 - pi/2)) + sin(q5 - pi/2)*(cos(q4)*cos(q1 + pi/2)*sin(q2 - pi/2) + cos(q1 + pi/2)*cos(q2 - pi/2)*sin(q4))) - cos(q6 - pi/2)*sin(q1 + pi/2), l_tool*sin(q1 + pi/2) - l_pitch2yaw*cos(q6 - pi/2)*(cos(q5 - pi/2)*(cos(q1 + pi/2)*sin(q4)*sin(q2 - pi/2) - cos(q4)*cos(q1 + pi/2)*cos(q2 - pi/2)) + sin(q5 - pi/2)*(cos(q4)*cos(q1 + pi/2)*sin(q2 - pi/2) + cos(q1 + pi/2)*cos(q2 - pi/2)*sin(q4))) - l_pitch2yaw*sin(q1 + pi/2)*sin(q6 - pi/2) + cos(q1 + pi/2)*sin(q2 - pi/2)*(l_RCC - q3)
+   cos(q1 + pi/2)*sin(q6 - pi/2) + cos(q6 - pi/2)*(cos(q5 - pi/2)*(cos(q4)*cos(q2 - pi/2)*sin(q1 + pi/2) - sin(q4)*sin(q1 + pi/2)*sin(q2 - pi/2)) - sin(q5 - pi/2)*(cos(q4)*sin(q1 + pi/2)*sin(q2 - pi/2) + cos(q2 - pi/2)*sin(q4)*sin(q1 + pi/2))), cos(q5 - pi/2)*(cos(q4)*sin(q1 + pi/2)*sin(q2 - pi/2) + cos(q2 - pi/2)*sin(q4)*sin(q1 + pi/2)) + sin(q5 - pi/2)*(cos(q4)*cos(q2 - pi/2)*sin(q1 + pi/2) - sin(q4)*sin(q1 + pi/2)*sin(q2 - pi/2)), cos(q1 + pi/2)*cos(q6 - pi/2) - sin(q6 - pi/2)*(cos(q5 - pi/2)*(cos(q4)*cos(q2 - pi/2)*sin(q1 + pi/2) - sin(q4)*sin(q1 + pi/2)*sin(q2 - pi/2)) - sin(q5 - pi/2)*(cos(q4)*sin(q1 + pi/2)*sin(q2 - pi/2) + cos(q2 - pi/2)*sin(q4)*sin(q1 + pi/2))), l_pitch2yaw*cos(q1 + pi/2)*sin(q6 - pi/2) - l_tool*cos(q1 + pi/2) + l_pitch2yaw*cos(q6 - pi/2)*(cos(q5 - pi/2)*(cos(q4)*cos(q2 - pi/2)*sin(q1 + pi/2) - sin(q4)*sin(q1 + pi/2)*sin(q2 - pi/2)) - sin(q5 - pi/2)*(cos(q4)*sin(q1 + pi/2)*sin(q2 - pi/2) + cos(q2 - pi/2)*sin(q4)*sin(q1 + pi/2))) + sin(q1 + pi/2)*sin(q2 - pi/2)*(l_RCC - q3)
+                                                                                               cos(q6 - pi/2)*(sin(q5 - pi/2)*(cos(q4)*cos(q2 - pi/2) - sin(q4)*sin(q2 - pi/2)) + cos(q5 - pi/2)*(cos(q4)*sin(q2 - pi/2) + cos(q2 - pi/2)*sin(q4))),                                                             sin(q5 - pi/2)*(cos(q4)*sin(q2 - pi/2) + cos(q2 - pi/2)*sin(q4)) - cos(q5 - pi/2)*(cos(q4)*cos(q2 - pi/2) - sin(q4)*sin(q2 - pi/2)),                                                                                            -sin(q6 - pi/2)*(sin(q5 - pi/2)*(cos(q4)*cos(q2 - pi/2) - sin(q4)*sin(q2 - pi/2)) + cos(q5 - pi/2)*(cos(q4)*sin(q2 - pi/2) + cos(q2 - pi/2)*sin(q4))),                                                                                                                                                l_pitch2yaw*cos(q6 - pi/2)*(sin(q5 - pi/2)*(cos(q4)*cos(q2 - pi/2) - sin(q4)*sin(q2 - pi/2)) + cos(q5 - pi/2)*(cos(q4)*sin(q2 - pi/2) + cos(q2 - pi/2)*sin(q4))) - cos(q2 - pi/2)*(l_RCC - q3)
+                                                                                                                                                                                                                                                  0,                                                                                                                                                                                               0,                                                                                                                                                                                                                                                0,                                                                                                                                                                                                                                                                                                                                             1];
+end
