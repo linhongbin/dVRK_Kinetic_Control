@@ -1,6 +1,6 @@
 function m = PSM_DH_Model_Sym()
     syms l_RCC l_tool l_pitch2yaw l_yaw2ctrlpnt real;
-    
+    m.method = 'Modified';
     m.DH = [
         % type   alpha   a           d       theta
         %=====================================
@@ -11,4 +11,8 @@ function m = PSM_DH_Model_Sym()
            1     -pi/2  0           0        -pi/2;
            1     -pi/2  l_pitch2yaw 0        -pi/2;
            ];
+   m.tip = [0 0 -1 0;
+           -1 0  0 l_yaw2ctrlpnt;
+           0  1  0 0;
+           0  0  0 1;];
 end
