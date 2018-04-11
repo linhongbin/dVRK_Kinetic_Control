@@ -1,5 +1,5 @@
 
-function graphical(R,t)
+function graphical(T_psm,T_mtm)
     T = rt2tr(R,t);
     T_origin=eye(4,4);
     x_e = t(1,1); y_e = t(2,1); z_e = t(3,1);
