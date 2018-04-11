@@ -16,8 +16,8 @@ function m = PSM_DH_Model()
            1     -pi/2  0           0        -pi/2;
            1     -pi/2  m.l_pitch2yaw 0        -pi/2;
            ];
-   m.tip = [0 0 -1 0;
-           -1 0  0 m.l_yaw2ctrlpnt;
-           0  1  0 0;
+   m.tip = [0 -1  0 0;
+           0   0  1 m.l_yaw2ctrlpnt;
+           -1  0  0 0;
            0  0  0 1;];
 end
