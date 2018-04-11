@@ -1,6 +1,7 @@
 function m = MTM_DH_Model_Sym()
     syms l_forearm l_arm h real;
     
+    m.method = 'Standard'
     m.DH = [
         % type   alpha   a           d       theta
         %=====================================
@@ -12,4 +13,6 @@ function m = MTM_DH_Model_Sym()
            1      pi/2  0           0         -pi/2;
            1      0     0           0          pi/2;
            ];
+       
+    m.tip = eye(4);
 end
