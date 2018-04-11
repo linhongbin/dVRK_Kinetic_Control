@@ -4,13 +4,13 @@ function PSM_graphical(R,t,i)
     frame_width = 1;
     frame_thick = 0.1;
     lim_Max = 0.3;
-    foundFig=findobj('Tag','Fast_Plot');
+    foundFig=findobj('Tag','PSM_Fast_Plot');
     patch_length = 0.07;
     if isempty(foundFig)
         fig=figure('Color','white');
         clf(fig);
-        set(fig,'Name','Trajectory');
-        set(fig,'DoubleBuffer','on','Tag','Fast_Plot');
+        set(fig,'Name','PSM_Trajectory');
+        set(fig,'DoubleBuffer','on','Tag','PSM_Fast_Plot');
         set(fig,'Renderer','painters');
         view([127.5 15]);
         hold('on');
