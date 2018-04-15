@@ -18,7 +18,11 @@ for i = 1:d_size(3)-1
     if(mod(i,50) == 0)
         PSM_graphical(xt(1:3,1:3), xt(1:3,4),i);
     end
+    if(i == d_size(3)-1)
+        i = d_size(3)-1;
+    end
 end
+MTM_Final = mtm_x(:,:,i);
 
 % for t = time_delta:time_delta:duration
 %     [xd_t, vd_t] = Design_Trajectory(t,x0);
@@ -32,6 +36,8 @@ for i = 1:d_size(3)
         %pause(0.5);
     end
 end
+
+PSM_Final = psm_x_dsr(:,:,i);
 
 % d_size = size(mtm_x);
 % for i = 1:d_size(3)

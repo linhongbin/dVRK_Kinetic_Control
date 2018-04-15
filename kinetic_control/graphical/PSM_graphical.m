@@ -1,5 +1,9 @@
-function PSM_graphical(R,t,i)
+function PSM_graphical(q)
     persistent chain;
+    global PSM_Model;
+    [T,psm_Jt] = FK_Jacob_Geometry(q,PSM_Model.DH, PSM_Model.tip, PSM_Model.method);
+    R = T(1:3,1:3);
+    t = T(1:3,4);
     frame_length = 0.1;
     frame_width = 1;
     frame_thick = 0.1;
@@ -52,7 +56,7 @@ function PSM_graphical(R,t,i)
     %set(plot_patch,'Parent',chain);
     %set(plot_base,'Parent',chain);
     set(plot_tip,'Parent',chain);
-    title(sprintf('The position: x:%.4f, y:%.4f, z:%.4f, index %d',t(1,1),t(2,1),t(3,1),i));
+    title(sprintf('The position: x:%.4f, y:%.4f, z:%.4f',t(1,1),t(2,1),t(3,1)));
     drawnow;
 end
 

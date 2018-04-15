@@ -5,5 +5,5 @@ function PSM_T = MTM_to_PSM_Mapping(MTM_T)
          0, -1, 0
          0, 0, 1];
     mtm_pos_delta = MTM_T(1:3,4)-mtm_pos_ref;
-    PSM_T = [ MTM_T(1:3,1:3)*R, (R*mtm_pos_delta+psm_pos_ref);zeros(1,3),1]
+    PSM_T = [ MTM_T(1:3,1:3)*R, (R*mtm_pos_delta+psm_pos_ref);zeros(1,3),1];
 end
